@@ -223,7 +223,3 @@ PRODUCT_PACKAGES += \
     Settings \
     libsurfaceflinger_ddmconnection
 
-# This is not necessary for mini, but is for mini-emulator as it should
-# be included in platform.zip
-PRODUCT_PACKAGES += camera.goldfish.jpeg
-

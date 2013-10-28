@@ -436,8 +436,6 @@ ifneq ($(BOARD_FORCE_RAMDISK_ADDRESS),)
   $(error BOARD_FORCE_RAMDISK_ADDRESS has been deprecated. Use BOARD_MKBOOTIMG_ARGS.)
 endif
 
-INSTALLED_BOOTIMAGE_TARGET := $(PRODUCT_OUT)/boot.img
-
 ifeq ($(TARGET_BOOTIMAGE_USE_EXT2),true)
 tmp_dir_for_image := $(call intermediates-dir-for,EXECUTABLES,boot_img)/bootimg
 INTERNAL_BOOTIMAGE_ARGS += --tmpdir $(tmp_dir_for_image)
@@ -826,9 +824,6 @@ else
 BOARD_NAND_SPARE_SIZE := 64
 endif
 
-ifdef BOARD_CUSTOM_BOOTIMG_MK
-include $(BOARD_CUSTOM_BOOTIMG_MK)
-endif
 
 # -----------------------------------------------------------------
 # system image
@@ -1562,34 +1557,6 @@ endif # EMMA_INSTRUMENT=true
 dalvikfiles: $(INTERNAL_DALVIK_MODULES)
 
 # -----------------------------------------------------------------
-# The emulator package
-ifeq ($(BUILD_EMULATOR),true)
-
-INSTALLED_QEMU_KERNEL_TARGET := $(PRODUCT_OUT)/kernel-qemu
-
-$(INSTALLED_QEMU_KERNEL_TARGET): $(INSTALLED_KERNEL_TARGET)
-	$(hide) $(ACP) -fp $(INSTALLED_KERNEL_TARGET) $(INSTALLED_QEMU_KERNEL_TARGET)
-
-INTERNAL_EMULATOR_PACKAGE_FILES += \
-		$(HOST_OUT_EXECUTABLES)/emulator$(HOST_EXECUTABLE_SUFFIX) \
-		$(INSTALLED_QEMU_KERNEL_TARGET) \
-		$(INSTALLED_RAMDISK_TARGET) \
-		$(recovery_ramdisk) \
-		$(INSTALLED_SYSTEMIMAGE) \
-		$(INSTALLED_USERDATAIMAGE_TARGET)
-
-name := $(TARGET_PRODUCT)-emulator-$(FILE_NAME_TAG)
-
-INTERNAL_EMULATOR_PACKAGE_TARGET := $(PRODUCT_OUT)/$(name).zip
-
-$(INTERNAL_EMULATOR_PACKAGE_TARGET): $(INTERNAL_EMULATOR_PACKAGE_FILES)
-	@echo -e ${CL_YLW}"Package:"${CL_RST}" $@"
-	$(hide) zip -qj $@ $(INTERNAL_EMULATOR_PACKAGE_FILES)
-
-.PHONY: goldfish
-goldfish: $(INTERNAL_EMULATOR_PACKAGE_TARGET)
-
-endif
 # -----------------------------------------------------------------
 # Old PDK stuffs, retired
 # The pdk package (Platform Development Kit)

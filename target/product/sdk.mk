@@ -68,19 +68,14 @@ PRODUCT_PACKAGES := \
 
 # audio libraries.
 PRODUCT_PACKAGES += \
-	audio.primary.goldfish \
-	audio_policy.default \
-	local_time.default
+	local_time.default \
 
 PRODUCT_PACKAGE_OVERLAYS := development/sdk_overlay
 
 PRODUCT_COPY_FILES := \
-	device/generic/goldfish/data/etc/apns-conf.xml:system/etc/apns-conf.xml \
 	frameworks/base/data/sounds/effects/ogg/camera_click.ogg:system/media/audio/ui/camera_click.ogg \
 	frameworks/base/data/sounds/effects/ogg/VideoRecord.ogg:system/media/audio/ui/VideoRecord.ogg \
 	frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
-	device/generic/goldfish/camera/media_profiles.xml:system/etc/media_profiles.xml \
-	device/generic/goldfish/camera/media_codecs.xml:system/etc/media_codecs.xml \
 	frameworks/native/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml \
 	frameworks/native/data/etc/android.hardware.camera.autofocus.xml:system/etc/permissions/android.hardware.camera.autofocus.xml \
 	frameworks/av/media/libeffects/data/audio_effects.conf:system/etc/audio_effects.conf \

@@ -48,8 +48,6 @@ GRANDFATHERED_ALL_PREBUILT := \
 	hosts \
 	hwcomposer.tegra.so \
 	ime \
-	init.goldfish.rc \
-	init.goldfish.sh \
 	init.olympus.rc \
 	init.rc \
 	init.sholes.rc \
@@ -90,7 +88,6 @@ GRANDFATHERED_ALL_PREBUILT := \
 	sys \
 	system \
 	tcmd \
-	ueventd.goldfish.rc \
 	ueventd.olympus.rc \
 	ueventd.rc \
 	ueventd.stingray.rc \
